@@ -45,5 +45,8 @@
   "require-dev": {
     "illuminate/support": "^8.14",
     "phpunit/phpunit": "^9.4"
+  },
+  "scripts": {
+    "test-ci": "phpunit --coverage-clover=coverage.xml"
   }
 }
