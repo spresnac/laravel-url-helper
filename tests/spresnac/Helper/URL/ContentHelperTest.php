@@ -3,7 +3,6 @@
 namespace spresnac\Helper\URL;
 
 use Illuminate\Support\Collection;
-use spresnac\Helper\URL\ContentHelper;
 use PHPUnit\Framework\TestCase;
 
 class ContentHelperTest extends TestCase
