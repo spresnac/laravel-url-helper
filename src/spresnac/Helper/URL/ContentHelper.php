@@ -24,6 +24,7 @@ class ContentHelper
     public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -44,6 +45,7 @@ class ContentHelper
         if ($content->length() > 0) {
             $data = $content->matchAll('/href=["\']([^"\']*)["\']/');
         }
+
         return $data;
     }
 }
