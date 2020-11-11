@@ -1,0 +1,52 @@
+{
+  "name": "spresnac/laravel-url-helper",
+  "description": "Helping you with URL related problems",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "php",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Sascha Presnac",
+      "email": "presnac@gmail.com",
+      "homepage": "https://twitter.com/spresnac"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "spresnac\\": "src/spresnac/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spresnac\\tests\\": "tests/spresnac/"
+    }
+  },
+  "funding": [
+    {
+      "type": "other",
+      "url": "https://www.buymeacoffee.com/spresnac"
+    },
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/paladin"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/spresnac"
+    }
+  ],
+  "require": {
+    "php": "^7.4"
+  },
+  "require-dev": {
+    "illuminate/support": "^8.14",
+    "phpunit/phpunit": "^9.4"
+  },
+  "scripts": {
+    "test-ci": "phpunit --coverage-clover=coverage.xml"
+  }
+}
