@@ -19,7 +19,7 @@ class UrlHelper
         if ($url->contains('..')) {
             $url_token = parse_url($url);
             $path_token = Str::of($url_token['path'])->explode('/');
-            $path_fragment = $path_token;#
+            $path_fragment = $path_token;
 
             while ($path_fragment->contains('..')) {
                 $path_fragment->each(function (string $path_part, $key) use (&$path_fragment) {
