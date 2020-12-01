@@ -1,10 +1,10 @@
 # URL Helper Package
 
-![Packagist License](https://img.shields.io/packagist/l/spresnac/laravel-url-helper?style=for-the-badge)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/spresnac/laravel-url-helper?style=for-the-badge)
-![Codecov](https://img.shields.io/codecov/c/gh/spresnac/laravel-url-helper?style=for-the-badge) 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spresnac/laravel-url-helper/tests?style=for-the-badge)
-[![StyleCI](https://github.styleci.io/repos/312022644/shield?style=for-the-badge)](https://github.styleci.io/repos/312022644?branch=main)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/spresnac/laravel-url-helper.svg)
+[![codecov](https://codecov.io/gh/spresnac/laravel-url-helper/branch/main/graph/badge.svg?token=6BEX55062B)](https://codecov.io/gh/spresnac/laravel-url-helper) 
+[![StyleCI](https://github.styleci.io/repos/312022644/shield)](https://github.styleci.io/repos/312022644)
+[![CI Status](https://github.com/spresnac/laravel-url-helper/workflows/tests/badge.svg)](https://github.com/spresnac/laravel-url-helper/actions)
 
 # Installation
 First things first, so require the package:
