@@ -40,7 +40,7 @@
     }
   ],
   "require": {
-    "php": "^7.4"
+    "php": "^7.3 || ^8.0"
   },
   "require-dev": {
     "illuminate/support": "^8.14",
