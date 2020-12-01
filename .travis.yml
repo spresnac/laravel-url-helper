@@ -3,13 +3,17 @@ os:
   - linux
   - osx
   - windows
-dist: focal
+dist:
+  - focal
+  - xenial
 php:
   - '7.4'
   - '8.0'
 jobs:
   allow_failures:
-    - os: windows
+    - os:
+      - windows
+      - osx
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction
