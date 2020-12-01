@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.com/spresnac/laravel-url-helper.svg?branch=develop)](https://travis-ci.com/spresnac/laravel-url-helper)
 [![codecov](https://codecov.io/gh/spresnac/laravel-url-helper/branch/main/graph/badge.svg?token=6BEX55062B)](https://codecov.io/gh/spresnac/laravel-url-helper) 
 [![StyleCI](https://github.styleci.io/repos/312022644/shield?branch=develop)](https://github.styleci.io/repos/312022644?branch=develop)
-[![CI Status](https://github.com/spresnac/laravel-url-helper/workflows/Auto%20testings/badge.svg)](https://github.com/spresnac/laravel-url-helper/actions)
+[![CI Status](https://github.com/spresnac/laravel-url-helper/workflows/tests/badge.svg)](https://github.com/spresnac/laravel-url-helper/actions)
 
 # Installation
 First things first, so require the package:
