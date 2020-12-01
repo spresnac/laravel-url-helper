@@ -2,17 +2,12 @@ language: php
 os:
   - linux
   - osx
-  - windows
-dist:
-  - focal
-  - xenial
 php:
   - '7.4'
   - '8.0'
 jobs:
   allow_failures:
     - os:
-      - windows
       - osx
 before_script:
   - travis_retry composer self-update
