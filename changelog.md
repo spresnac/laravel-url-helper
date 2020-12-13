@@ -6,10 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.4] - 2020-12013
+## [0.5] - 2020-12-13
 ### Added
 - New Sitemap Helper
 - Add changelog.md (this file)
+### Changed
+### Removed
+
+## [0.4] - 2020-11-24
+### Added
+- added travis
 ### Changed
 ### Removed
 
@@ -31,7 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
-[Unreleased]: https://github.com/spresnac/laravel-url-helper/compare/0.4...head
+[Unreleased]: https://github.com/spresnac/laravel-url-helper/compare/0.5...head
+[0.5]: https://github.com/spresnac/laravel-url-helper/compare/0.4...0.5
 [0.4]: https://github.com/spresnac/laravel-url-helper/compare/0.3...0.4
 [0.3]: https://github.com/spresnac/laravel-url-helper/compare/0.2...0.3
 [0.2]: https://github.com/spresnac/laravel-url-helper/compare/0.1...0.2
