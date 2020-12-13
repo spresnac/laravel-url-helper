@@ -48,6 +48,13 @@ $parsed_url = parse_url('http://example.com/test/url.php');
 $my_url = $url_helper->build_url($parsed_url);
 ```
 
+## Sitemap Helper (0.4+)
+### process_input_from_string(string $input_string): Collection (0.4+)
+Returns the urls in a sitemap string as Collection
+
+### process_input_from_url(string $input_url): Collection (0.4+)
+Returns the urls in a sitemap url as Collection
+
 # Tests
 Simply run
 ```
