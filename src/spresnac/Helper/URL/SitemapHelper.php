@@ -14,8 +14,9 @@ class SitemapHelper
         $result = collect();
         $xml_structure = simplexml_load_string($input_string);
         foreach ($xml_structure->url as $url_entry) {
-            $result->push((string)$url_entry->loc);
+            $result->push((string) $url_entry->loc);
         }
+
         return $result;
     }
 
@@ -29,6 +30,7 @@ class SitemapHelper
         if ($sitemap_string === false) {
             return collect();
         }
+
         return $this->process_input_from_string($sitemap_string);
     }
 }
