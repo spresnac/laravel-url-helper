@@ -45,6 +45,7 @@ class ContentHelper
         if ($content->length() > 0) {
             $data = $content->matchAll('/href=["\']([^"\']*)["\']/imu');
         }
+
         return $data;
     }
 
@@ -55,6 +56,7 @@ class ContentHelper
         if ($content->length() > 0) {
             $data = $content->matchAll('/src=["\']([^"\']*)["\']/imu');
         }
+
         return $data;
     }
 
@@ -65,6 +67,7 @@ class ContentHelper
         if ($content->length() > 0) {
             $data = $content->matchAll('/((http|https|ftp):\/\/[^\s"\']*)/imu');
         }
+
         return $data;
     }
 
@@ -77,6 +80,7 @@ class ContentHelper
                 ->merge($this->getSrcUrls())
                 ->merge($this->getLinksFromPlaintext());
         }
+
         return $data->unique();
     }
 }
