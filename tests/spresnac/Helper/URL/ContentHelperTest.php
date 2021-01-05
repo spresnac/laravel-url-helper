@@ -67,4 +67,32 @@ class ContentHelperTest extends TestCase
         $this->assertCount(1, $result);
         $this->assertEquals('http://www.example.com.org', $result[0]);
     }
+
+    /** @test */
+    public function it_returns_links_in_plain_text()
+    {
+        $contentHelper = new ContentHelper();
+        $contentHelper->setContent('Test http://www.example.com.org and so on
+so let\'s test some https://more.com#example
+and maybe some inline /config/something.php
+maybe also a ftp link ftp://somewhere?and&this=1');
+        $result = $contentHelper->getLinksFromPlaintext();
+        $this->assertTrue($result instanceof Collection);
+        $this->assertCount(3, $result);
+        $this->assertEquals('http://www.example.com.org', $result[0]);
+        $this->assertEquals('https://more.com#example', $result[1]);
+        $this->assertEquals('ftp://somewhere?and&this=1', $result[2]);
+    }
+
+    /** @test */
+    public function it_gets_all_the_links_from_a_document()
+    {
+        $contentHelper = new ContentHelper();
+        $contentHelper->setContent('Test <a href="http://www.example.com.org" class="pb-3 bg-gray-100"> and so <img src="/img/anything.png" /> on');
+        $result = $contentHelper->getAllTheLinks();
+        $this->assertTrue($result instanceof Collection);
+        $this->assertCount(2, $result);
+        $this->assertEquals('http://www.example.com.org', $result[0]);
+        $this->assertEquals('/img/anything.png', $result[1]);
+    }
 }
