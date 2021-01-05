@@ -43,9 +43,40 @@ class ContentHelper
         $data = collect();
         $content = Str::of($this->content)->trim();
         if ($content->length() > 0) {
-            $data = $content->matchAll('/href=["\']([^"\']*)["\']/');
+            $data = $content->matchAll('/href=["\']([^"\']*)["\']/imu');
         }
-
         return $data;
+    }
+
+    public function getSrcUrls(): Collection
+    {
+        $data = collect();
+        $content = Str::of($this->content)->trim();
+        if ($content->length() > 0) {
+            $data = $content->matchAll('/src=["\']([^"\']*)["\']/imu');
+        }
+        return $data;
+    }
+
+    public function getLinksFromPlaintext(): Collection
+    {
+        $data = collect();
+        $content = Str::of($this->content)->trim();
+        if ($content->length() > 0) {
+            $data = $content->matchAll('/((http|https|ftp):\/\/[^\s"\']*)/imu');
+        }
+        return $data;
+    }
+
+    public function getAllTheLinks(): Collection
+    {
+        $data = collect();
+        $content = Str::of($this->content)->trim();
+        if ($content->length() > 0) {
+            $data = $data->merge($this->getHrefs())
+                ->merge($this->getSrcUrls())
+                ->merge($this->getLinksFromPlaintext());
+        }
+        return $data->unique();
     }
 }
