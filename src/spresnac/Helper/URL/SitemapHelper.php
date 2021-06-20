@@ -8,16 +8,28 @@ use Illuminate\Support\Str;
 
 class SitemapHelper
 {
+    protected Collection $results;
+
+    public function __construct()
+    {
+        $this->results = collect();
+    }
+
     public function process_input_from_string(string $input_string): Collection
     {
         $input_string = Str::of($input_string)->trim();
-        $result = collect();
         $xml_structure = simplexml_load_string($input_string);
-        foreach ($xml_structure->url as $url_entry) {
-            $result->push((string) $url_entry->loc);
+
+        foreach ($xml_structure->sitemap as $sitemap_entry) {
+            $this->results->push((string) $sitemap_entry->loc);
+            $this->process_input_from_url((string) $sitemap_entry->loc);
         }
 
-        return $result;
+        foreach ($xml_structure->url as $url_entry) {
+            $this->results->push((string) $url_entry->loc);
+        }
+
+        return $this->results;
     }
 
     public function process_input_from_url(string $input_url): Collection
@@ -27,6 +39,7 @@ class SitemapHelper
         } catch (Exception $e) {
             return collect();
         }
+
         if ($sitemap_string === false) {
             return collect();
         }

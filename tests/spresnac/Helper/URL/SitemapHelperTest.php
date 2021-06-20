@@ -56,4 +56,15 @@ class SitemapHelperTest extends TestCase
         $this->assertTrue($result instanceof Collection);
         $this->assertCount(0, $result);
     }
+
+    /** @test */
+    public function it_handles_a_sitemap_url_and_follows_sitemaps()
+    {
+        $sitemap_helper = new SitemapHelper();
+        $input_url = 'https://www.codemercenary.de/sitemap.xml';
+        $result = $sitemap_helper->process_input_from_url($input_url);
+        $this->assertTrue($result instanceof Collection);
+        $this->assertCount(430, $result);
+        $this->assertEquals('https://www.codemercenary.de/sitemap-misc.xml', $result->shift());
+    }
 }
