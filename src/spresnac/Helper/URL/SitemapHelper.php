@@ -14,21 +14,21 @@ class SitemapHelper
     {
         $this->results = collect();
     }
-    
+
     public function process_input_from_string(string $input_string): Collection
     {
         $input_string = Str::of($input_string)->trim();
         $xml_structure = simplexml_load_string($input_string);
-        
+
         foreach ($xml_structure->sitemap as $sitemap_entry) {
             $this->results->push((string) $sitemap_entry->loc);
             $this->process_input_from_url((string) $sitemap_entry->loc);
         }
-        
+
         foreach ($xml_structure->url as $url_entry) {
             $this->results->push((string) $url_entry->loc);
         }
-        
+
         return $this->results;
     }
 
@@ -39,11 +39,11 @@ class SitemapHelper
         } catch (Exception $e) {
             return collect();
         }
-        
+
         if ($sitemap_string === false) {
             return collect();
         }
-        
+
         return $this->process_input_from_string($sitemap_string);
     }
 }
