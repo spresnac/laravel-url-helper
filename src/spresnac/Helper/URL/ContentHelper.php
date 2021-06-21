@@ -65,7 +65,7 @@ class ContentHelper
         $data = collect();
         $content = Str::of($this->content)->trim();
         if ($content->length() > 0) {
-            $data = $content->matchAll('/((http|https|ftp):\/\/[^\s"\']*)/imu');
+            $data = $content->matchAll('/((http|https|ftp):\/\/[^\s^<"\']*)/imu');
         }
 
         return $data;
