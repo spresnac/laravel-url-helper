@@ -95,4 +95,21 @@ maybe also a ftp link ftp://somewhere?and&this=1');
         $this->assertEquals('http://www.example.com.org', $result[0]);
         $this->assertEquals('/img/anything.png', $result[1]);
     }
+
+    /** @test */
+    public function it_gets_all_links_correct_in_plaintext()
+    {
+        $contentHelper = new ContentHelper();
+        $contentHelper->setContent('<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url><loc>https://example.com/impressum/</loc><lastmod>2021-06-15</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url><loc>https://example.com/datenschutz/</loc><lastmod>2021-06-15</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url><loc>https://example.com/</loc><lastmod>2021-06-18</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url></urlset>
+');
+        $result = $contentHelper->getLinksFromPlaintext();
+        $this->assertTrue($result instanceof Collection);
+        $this->assertCount(4, $result);
+        $this->assertEquals('http://www.sitemaps.org/schemas/sitemap/0.9', $result[0]);
+        $this->assertEquals('https://example.com/impressum/', $result[1]);
+        $this->assertEquals('https://example.com/datenschutz/', $result[2]);
+        $this->assertEquals('https://example.com/', $result[3]);
+    }
 }
