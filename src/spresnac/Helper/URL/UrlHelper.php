@@ -11,11 +11,15 @@ class UrlHelper
      * This is for building a valid URL from inputs with `..` as folder in an url.
      *
      * @param string $url
+     * @param bool $lower_result
      * @return Stringable|string
      */
-    public function normalize_url(string $url)
+    public function normalize_url(string $url, bool $lower_result = true)
     {
-        $url = Str::of($url)->trim()->lower();
+        $url = Str::of($url)->trim();
+        if ($lower_result) {
+            $url = $url->lower();
+        }
         if ($url->contains('..')) {
             $url_token = parse_url($url);
             $path_token = Str::of($url_token['path'])->explode('/');

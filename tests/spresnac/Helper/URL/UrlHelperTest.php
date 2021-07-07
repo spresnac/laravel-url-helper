@@ -42,4 +42,22 @@ class UrlHelperTest extends TestCase
         $result = $url_helper->normalize_url($test_url);
         $this->assertEquals('https://example.com/some/dir/url.html', $result);
     }
+
+    /** @test */
+    public function it_normalizes_a_url_and_leaves_the_capitalization()
+    {
+        $url_helper = new UrlHelper();
+        $test_url = 'https://Example.com/sOme/sTrange/Url.Html';
+        $result = $url_helper->normalize_url($test_url, false);
+        $this->assertEquals('https://Example.com/sOme/sTrange/Url.Html', $result);
+    }
+
+    /** @test */
+    public function it_normalizes_a_url_and_lowers_the_capitalization()
+    {
+        $url_helper = new UrlHelper();
+        $test_url = 'https://Example.com/sOme/sTrange/Url.Html';
+        $result = $url_helper->normalize_url($test_url);
+        $this->assertEquals('https://example.com/some/strange/url.html', $result);
+    }
 }
