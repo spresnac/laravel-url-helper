@@ -74,4 +74,19 @@ class UrlHelper
             $query.
             $fragment;
     }
+
+    public function getMainDomainPart(string $url)
+    {
+        if (trim($url) === '' || 
+            ($url_data = parse_url($url)) === false || 
+            array_key_exists('host', $url_data) === false) {
+            return '';
+        }
+        $collect_host = collect(explode('.', $url_data['host']));
+        while ($collect_host->count() > 2) {
+            $collect_host->shift();
+        }
+        return implode('.', $collect_host->toArray());
+    }
+
 }
