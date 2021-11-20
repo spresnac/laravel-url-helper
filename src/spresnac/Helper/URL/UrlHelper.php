@@ -10,8 +10,8 @@ class UrlHelper
     /**
      * This is for building a valid URL from inputs with `..` as folder in an url.
      *
-     * @param string $url
-     * @param bool $lower_result
+     * @param  string  $url
+     * @param  bool  $lower_result
      * @return Stringable|string
      */
     public function normalize_url(string $url, bool $lower_result = true)
@@ -50,7 +50,7 @@ class UrlHelper
     /**
      * This is the missing function to reverse the `parse_url` function.
      *
-     * @param array $parsed_url
+     * @param  array  $parsed_url
      * @return string
      */
     public function build_url(array $parsed_url)
@@ -77,8 +77,8 @@ class UrlHelper
 
     public function getMainDomainPart(string $url)
     {
-        if (trim($url) === '' || 
-            ($url_data = parse_url($url)) === false || 
+        if (trim($url) === '' ||
+            ($url_data = parse_url($url)) === false ||
             array_key_exists('host', $url_data) === false) {
             return '';
         }
@@ -86,7 +86,7 @@ class UrlHelper
         while ($collect_host->count() > 2) {
             $collect_host->shift();
         }
+
         return implode('.', $collect_host->toArray());
     }
-
 }
