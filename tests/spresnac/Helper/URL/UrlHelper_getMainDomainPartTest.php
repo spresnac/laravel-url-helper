@@ -15,7 +15,7 @@ class UrlHelper_getMainDomainPartTest extends TestCase
         $result = $url_helper->getMainDomainPart($test_url);
         $this->assertEquals('example.com', $result);
     }
-    
+
     /** @test */
     public function it_works_with_more_than_just_domain_part()
     {
@@ -24,7 +24,7 @@ class UrlHelper_getMainDomainPartTest extends TestCase
         $result = $url_helper->getMainDomainPart($test_url);
         $this->assertEquals('example.com', $result);
     }
-    
+
     /** @test */
     public function it_works_returns_an_empty_string_when_entring_non_domain_informations()
     {
@@ -33,7 +33,7 @@ class UrlHelper_getMainDomainPartTest extends TestCase
         $result = $url_helper->getMainDomainPart($test_url);
         $this->assertEquals('', $result);
     }
-    
+
     /** @test */
     public function it_works_returns_an_empty_string_when_entring_an_empty_string()
     {
