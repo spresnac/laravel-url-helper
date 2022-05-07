@@ -12,7 +12,7 @@ class ContentHelper
     /**
      * ContentHelper constructor.
      *
-     * @param string|null $content
+     * @param  string|null  $content
      */
     public function __construct(string $content = null)
     {
