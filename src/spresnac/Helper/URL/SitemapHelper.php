@@ -46,11 +46,11 @@ class SitemapHelper
 
         return $this->process_input_from_string($sitemap_string);
     }
-    
+
     protected function getUrlContent($url): string
     {
         $curl_handle = curl_init();
-        curl_setopt($curl_handle, CURLOPT_URL,$url);
+        curl_setopt($curl_handle, CURLOPT_URL, $url);
         curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl_handle, CURLOPT_SSL_VERIFYSTATUS, false);
@@ -62,10 +62,11 @@ class SitemapHelper
             'Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'DNT:1',
             'Pragma:no-cache',
-            'content-length:0'
+            'content-length:0',
         ]);
         $query = curl_exec($curl_handle);
         curl_close($curl_handle);
+
         return $query;
     }
 }
