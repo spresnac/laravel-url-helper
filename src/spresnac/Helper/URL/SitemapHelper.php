@@ -43,11 +43,10 @@ class SitemapHelper
         if ($sitemap_string === false) {
             return collect();
         }
-
         return $this->process_input_from_string($sitemap_string);
     }
 
-    protected function getUrlContent($url): string
+    protected function getUrlContent($url)
     {
         $curl_handle = curl_init();
         curl_setopt($curl_handle, CURLOPT_URL, $url);
@@ -65,7 +64,12 @@ class SitemapHelper
             'content-length:0',
         ]);
         $query = curl_exec($curl_handle);
+        $curl_info = curl_getinfo($curl_handle);
         curl_close($curl_handle);
+        
+        if (is_array($curl_info) && array_key_exists('http_code', $curl_info) && (int)$curl_info['http_code'] > 399) {
+            return false;
+        }
 
         return $query;
     }
