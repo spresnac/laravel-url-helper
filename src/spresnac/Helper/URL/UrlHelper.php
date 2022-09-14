@@ -75,7 +75,7 @@ class UrlHelper
             $fragment;
     }
 
-    public function getMainDomainPart(string $url)
+    public function getMainDomainPart(string $url): string
     {
         if (trim($url) === '' ||
             ($url_data = parse_url($url)) === false ||
@@ -88,5 +88,20 @@ class UrlHelper
         }
 
         return implode('.', $collect_host->toArray());
+    }
+
+    public function getSubdomainPart(string $url): string
+    {
+        if (trim($url) === '' ||
+            ($url_data = parse_url($url)) === false ||
+            array_key_exists('host', $url_data) === false) {
+            return '';
+        }
+        $exploded_host_parts = collect(explode('.', $url_data['host']));
+        $subdomain_parts = collect();
+        while ($exploded_host_parts->count() > 2) {
+            $subdomain_parts->push($exploded_host_parts->shift());
+        }
+        return implode('.', $subdomain_parts->toArray());
     }
 }
