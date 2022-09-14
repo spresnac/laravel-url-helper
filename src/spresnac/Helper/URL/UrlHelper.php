@@ -102,6 +102,7 @@ class UrlHelper
         while ($exploded_host_parts->count() > 2) {
             $subdomain_parts->push($exploded_host_parts->shift());
         }
+
         return implode('.', $subdomain_parts->toArray());
     }
 }
