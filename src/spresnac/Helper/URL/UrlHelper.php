@@ -53,7 +53,7 @@ class UrlHelper
      * @param  array  $parsed_url
      * @return string
      */
-    public function build_url(array $parsed_url)
+    public function build_url(array $parsed_url): string
     {
         $scheme = isset($parsed_url['scheme']) ? $parsed_url['scheme'].'://' : '';
         $host = isset($parsed_url['host']) ? $parsed_url['host'] : '';
