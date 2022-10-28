@@ -3,18 +3,17 @@
 namespace spresnac\Helper\URL;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
 
 class UrlHelper
 {
     /**
      * This is for building a valid URL from inputs with `..` as folder in an url.
      *
-     * @param  string  $url
-     * @param  bool  $lower_result
-     * @return Stringable|string
+     * @param  string  $url  The url to be normalized
+     * @param  bool  $lower_result  You want the result to be lowercased?
+     * @return string The normalized url
      */
-    public function normalize_url(string $url, bool $lower_result = true)
+    public function normalize_url(string $url, bool $lower_result = true): string
     {
         $url = Str::of($url)->trim();
         if ($lower_result) {
@@ -52,16 +51,18 @@ class UrlHelper
      *
      * @param  array  $parsed_url
      * @return string
+     *
+     * @see https://www.php.net/parse_url
      */
     public function build_url(array $parsed_url): string
     {
         $scheme = isset($parsed_url['scheme']) ? $parsed_url['scheme'].'://' : '';
-        $host = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+        $host = $parsed_url['host'] ?? '';
         $port = isset($parsed_url['port']) ? ':'.$parsed_url['port'] : '';
-        $user = isset($parsed_url['user']) ? $parsed_url['user'] : '';
+        $user = $parsed_url['user'] ?? '';
         $pass = isset($parsed_url['pass']) ? ':'.$parsed_url['pass'] : '';
         $pass = ($user || $pass) ? "$pass@" : '';
-        $path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+        $path = $parsed_url['path'] ?? '';
         $query = isset($parsed_url['query']) ? '?'.$parsed_url['query'] : '';
         $fragment = isset($parsed_url['fragment']) ? '#'.$parsed_url['fragment'] : '';
 
@@ -75,6 +76,14 @@ class UrlHelper
             $fragment;
     }
 
+    /**
+     * This will return the "main url part" of a url; this reflects the Second-level domain plus the top-level domain.
+     *
+     * @example https://something.strange.example.com/foobar will return example.com
+     *
+     * @param  string  $url  Your url
+     * @return string The main domain part only
+     */
     public function getMainDomainPart(string $url): string
     {
         if (trim($url) === '' ||
@@ -90,6 +99,14 @@ class UrlHelper
         return implode('.', $collect_host->toArray());
     }
 
+    /**
+     * This will return the "subdomain" of a url.
+     *
+     * @example https://something.strange.example.com/foobar will return something.strange
+     *
+     * @param  string  $url  Your url
+     * @return string The subdomain part only
+     */
     public function getSubdomainPart(string $url): string
     {
         if (trim($url) === '' ||
