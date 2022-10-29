@@ -125,10 +125,10 @@ class UrlHelper
 
     /**
      * Checks, if this is a full URL including protocol, host and everything.
-     * If it is a relative url, it will automaticly complete the url and return the result
-     * 
-     * @param string $url Your url to fullfill
-     * @param string $root_url Your starting point containing the root url
+     * If it is a relative url, it will automaticly complete the url and return the result.
+     *
+     * @param  string  $url  Your url to fullfill
+     * @param  string  $root_url  Your starting point containing the root url
      * @return string The complete Url
      */
     public function getFullEffectiveUrl(string $url, string $root_url): string
@@ -139,30 +139,28 @@ class UrlHelper
         }
 
         $parsed_root = collect(parse_url($root_url));
-        if ($parsed_url->has('host') && !$parsed_url->has('scheme')) {
-            return $parsed_root->get('scheme') . ':' . $url;
+        if ($parsed_url->has('host') && ! $parsed_url->has('scheme')) {
+            return $parsed_root->get('scheme').':'.$url;
         }
-        if (!$parsed_url->has('host') && !$parsed_url->has('scheme')) {
-        
+        if (! $parsed_url->has('host') && ! $parsed_url->has('scheme')) {
             if (Str::of($url)->startsWith('/')) {
-                return $parsed_root->get('scheme') . 
-                    '://' .
-                    $parsed_root->get('host') . 
+                return $parsed_root->get('scheme').
+                    '://'.
+                    $parsed_root->get('host').
                     $url;
             }
             if (Str::of($url)->startsWith('#')) {
                 return $root_url.$url;
             }
-            
+
             $path = Str::of($parsed_root->get('path'))->beforeLast('/');
-            return $parsed_root->get('scheme') .
-                '://' .
-                $parsed_root->get('host') .
-                $path .
-                '/' .
+
+            return $parsed_root->get('scheme').
+                '://'.
+                $parsed_root->get('host').
+                $path.
+                '/'.
                 $url;
-        
         }
-        
     }
 }
